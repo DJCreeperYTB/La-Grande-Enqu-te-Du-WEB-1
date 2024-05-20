@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vérification du Code d'Accès</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #000;
+            color: #fff;
+        }
+        h1 {
+            text-align: center;
+            margin-top: 50px;
+        }
+        #accessForm {
+            text-align: center;
+            margin-top: 50px;
+        }
+        label {
+            font-weight: bold;
+        }
+        input[type="text"] {
+            padding: 8px;
+            margin: 10px 0;
+            width: 200px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        #errorMessage {
+            color: red;
+            text-align: center;
+            display: none;
+        }
+        #accessLink {
+            text-align: center;
+            display: none;
+            margin-top: 20px;
+        }
+        #link {
+            color: #4CAF50;
+            text-decoration: none;
+        }
+        #link:hover {
+            text-decoration: underline;
+        }
+        #countdown {
+            text-align: center;
+            font-size: 24px;
+            margin-top: 20px;
+        }
+        .red {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <h1>La grande enquête du WEB - 1</h1>
+    <div id="accessForm">
+        <label for="accessCode">Entrez le code d'accès :</label><br>
+        <input type="text" id="accessCode" name="accessCode"><br><br>
+        <button type="button" onclick="checkAccess()">Vérifier</button>
+    </div>
+    <p id="errorMessage">Erreur</p>
+    <div id="accessLink">
+        <p>Félicitations ! Voici le lien :</p>
+        <a id="link" href="">Lien</a>
+    </div>
+    <div id="countdown"></div>
+
+    <script>
+        var codes = [
+            {code: "4A1B2C3D4E514TRIZB", link: "https://discord.gg/aXf7rWadYz"},
+            {code: "1900", link: "./morse1.wav"},
+            {code: "18 mai 2022", link: "https://youtu.be/uyQiGH-406A"},
+            {code: "J'ai-trouvé3630", link: "https://www.youtube.com/watch?v=uyQiGH-406A"},
+            {code: "Salade45", link: "https://fr.wikipedia.org/wiki/Salade_(plante)"},
+            {code: "18", link: "./morse2.mp3"},
+            {code: "peur", link: "./FIN.TXT"}
+        ];
+        var currentIndex = 0;
+
+        // Fonction pour vérifier le code d'accès
+        function checkAccess() {
+            var accessCodeInput = document.getElementById("accessCode").value;
+            var correctAccessCode = codes[currentIndex].code;
+
+            if (accessCodeInput === correctAccessCode) {
+                document.getElementById("accessLink").style.display = "block";
+                document.getElementById("errorMessage").style.display = "none";
+                document.getElementById("link").href = codes[currentIndex].link;
+                currentIndex++;
+                if (currentIndex >= codes.length) {
+                    document.getElementById("accessForm").style.display = "none";
+                } else {
+                    document.getElementById("accessCode").value = "";
+                }
+            } else {
+                document.getElementById("accessLink").style.display = "none";
+                document.getElementById("errorMessage").style.display = "block";
+            }
+        }
+    </script>
+</body>
+</html>

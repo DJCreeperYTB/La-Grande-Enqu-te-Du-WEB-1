@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>Décompte</title>
+<style>
+  body {
+    background-color: black; /* Fond noir */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    font-family: Arial, sans-serif; /* Police de caractères */
+  }
+  #countdown.red {
+    color: red; /* Couleur des chiffres lorsque le décompte est inférieur à une heure */
+  }
+  #countdown {
+    font-size: 40px;
+    color: white; /* Couleur initiale des chiffres */
+    font-weight: bold; /* Police en gras */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Ombre portée */
+  }
+</style>
+</head>
+<body>
+<div id="countdown"></div>
+
+<script>
+// Date et heure de fin du décompte
+var countDownDate = new Date("May 8, 2024 14:30:00").getTime();
+
+// Mise à jour du décompte toutes les secondes
+var x = setInterval(function() {
+
+  // Date et heure actuelles
+  var now = new Date().getTime();
+
+  // Calcul du temps restant
+  var distance = countDownDate - now;
+
+  // Calcul des jours, heures, minutes et secondes
+  var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+  var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+  var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+  // Formater les chiffres pour ajouter des zéros devant les nombres à un chiffre
+  days = String(days).padStart(2, '0');
+  hours = String(hours).padStart(2, '0');
+  minutes = String(minutes).padStart(2, '0');
+  seconds = String(seconds).padStart(2, '0');
+
+  // Affichage du résultat dans l'élément avec id="countdown"
+  var countdownElement = document.getElementById("countdown");
+  countdownElement.innerHTML = days + " " + hours + " " + minutes + " " + seconds + " ";
+
+  // Si le temps restant est inférieur à une heure, changer la couleur en rouge
+  if (distance < 3600000) {
+    countdownElement.classList.add('red');
+  }
+
+  // Si le décompte est terminé, arrêter le décompte et rediriger vers un autre fichier
+  if (distance < 0) {
+    clearInterval(x);
+    window.location.href = "Code.html"; // Redirection vers le fichier Code.html
+  }
+}, 1000);
+</script>
+
+</body>
+</html>
