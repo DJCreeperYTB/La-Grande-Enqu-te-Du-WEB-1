@@ -29,11 +29,10 @@
 
 <script>
 // Date et heure de fin du décompte
-var countDownDate = new Date("May 8, 2024 14:30:00").getTime();
+var countDownDate = new Date("May 27, 2024 14:30:00").getTime();
 
-// Mise à jour du décompte toutes les secondes
-var x = setInterval(function() {
-
+// Fonction de mise à jour du décompte
+function updateCountdown() {
   // Date et heure actuelles
   var now = new Date().getTime();
 
@@ -66,7 +65,10 @@ var x = setInterval(function() {
     clearInterval(x);
     window.location.href = "Code.html"; // Redirection vers le fichier Code.html
   }
-}, 1000);
+}
+
+// Mise à jour du décompte toutes les secondes
+var x = setInterval(updateCountdown, 1000);
 </script>
 
 </body>
